@@ -9,7 +9,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@vueuse/nuxt', '@nuxt/fonts', '@nuxt/icon'],
+
+  typescript: {
+    typeCheck: true,
+  },
+
   icon: {
     customCollections: [
       {
@@ -18,5 +22,12 @@ export default defineNuxtConfig({
         dir: './assets/icons'
       }
     ]
-  }
+  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: true,
+    },
+  ],
+  modules: ['@vueuse/nuxt', '@nuxt/fonts', '@nuxt/icon'],
 })
