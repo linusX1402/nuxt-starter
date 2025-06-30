@@ -1,4 +1,4 @@
-name: CTS Build Action
+name: Build Action
 
 on:
   push:
@@ -33,15 +33,16 @@ jobs:
         run: |
           ./build.sh
         ## Pushing to gitHub docker registry
+        # ToDo: add github_access_token to your github secrets
       - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.CTS_GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Tag the Docker image
-        # ToDo: change to correct Path
-        run: docker tag cts-frontend ghcr.io/your-user/nuxt-starter:latest
+        # ToDo: change to your Path
+        run: docker tag frontend ghcr.io/your-user/nuxt-starter:latest
         working-directory: ./frontend
 
       - name: Push the Docker image
-        # ToDo: change to correct Path
+        # ToDo: change to your Path
         run: docker push ghcr.io/your-user/nuxt-starter:latest
         working-directory: ./frontend
